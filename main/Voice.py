@@ -11,9 +11,9 @@ import wave
 
 # Define the complete path to the .pkl files
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL_PATH = os.path.join(BASE_DIR,"C:\\fwd\Parkinsons_predictor\main\models\parkinsons_model.pkl")
-SCALER_PATH = os.path.join(BASE_DIR, "C:\\fwd\Parkinsons_predictor\main\models\scaler.pkl")
-IMPUTER_PATH = os.path.join(BASE_DIR, "C:\\fwd\Parkinsons_predictor\main\models\imputer.pkl")
+MODEL_PATH = os.path.join(BASE_DIR,"/Users/bramhabajannavar/Desktop/FWD/fwd/main/models/parkinsons_model.pkl")
+SCALER_PATH = os.path.join(BASE_DIR, "/Users/bramhabajannavar/Desktop/FWD/fwd/main/models/scaler.pkl")
+IMPUTER_PATH = os.path.join(BASE_DIR, "/Users/bramhabajannavar/Desktop/FWD/fwd/main/models/imputer.pkl")
 
 # Load the model and scaler from pickle files
 with open(MODEL_PATH, 'rb') as model_file:

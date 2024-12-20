@@ -82,12 +82,18 @@
             max-width: 1440px;
             margin: 0 auto;
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
         }
 
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1rem;
+            width: 100%;
         }
 
         .card {
@@ -95,7 +101,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 1.5rem;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -108,7 +114,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .title {
@@ -187,7 +193,7 @@
         }
 
         .chat-container {
-            height: 400px;
+            height: 300px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             padding: 1.5rem;
@@ -253,18 +259,25 @@
             padding: 1rem;
             display: flex;
             justify-content: flex-end;
+            gap: 1rem;
         }
 
         .nav-link {
-            color: var(--color-text-secondary);
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .nav-link:hover {
-            color: var(--color-text);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
         }
+
         @media (max-width: 1024px) {
             .grid {
                 grid-template-columns: 1fr;

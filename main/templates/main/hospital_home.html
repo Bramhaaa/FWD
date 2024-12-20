@@ -57,8 +57,9 @@
         }
 
         .link-container {
-            margin-top: 2rem;
-            text-align: center;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
         }
 
         .link-container a {
@@ -67,10 +68,14 @@
             font-size: 1.25rem;
             font-weight: 500;
             transition: color 0.3s ease;
+            border: 2px solid var(--color-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
         }
 
         .link-container a:hover {
             color: var(--color-secondary);
+            border-color: var(--color-secondary);
         }
 
         .form-container {
@@ -98,8 +103,14 @@
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr;
             gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .form-group {
