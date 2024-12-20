@@ -79,35 +79,80 @@
             padding: 2rem;
         }
 
-        h1 {
-            font-size: 2.5rem;
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .title {
+            font-size: 1.5rem;
             font-weight: 700;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 1rem;
         }
 
         th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: left;
         }
 
         th {
-            background-color: var(--color-secondary);
+            background: rgba(255, 255, 255, 0.1);
             color: var(--color-text);
+        }
+
+        td {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--color-text-secondary);
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .quote {
+            margin-top: 2rem;
+            font-size: 1.25rem;
+            color: red;
+            text-align: center;
+        }
+        .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 1rem ;
         }
     </style>
 </head>
 <body>
+    <header class="header">
+        <nav class="nav">
+            <a href="{% url 'recording' %}" class="nav-link">Go Back</a>
+        </nav>
+    </header>
     <div class="background-shapes">
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
@@ -115,31 +160,33 @@
     </div>
 
     <div class="container">
-        <h1>Patients List</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Address</th>
-                    <th>Contact Number</th>
-                    <th>Doctor</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for patient in patients %}
-                <tr>
-                    <td>{{ patient.name }}</td>
-                    <td>{{ patient.age }}</td>
-                    <td>{{ patient.gender }}</td>
-                    <td>{{ patient.address }}</td>
-                    <td>{{ patient.contact_number }}</td>
-                    <td>{{ patient.doctor.name }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="card">
+            <h2 class="title">Patients List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>Contact Number</th>
+                        <th>Doctor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for patient in patients %}
+                    <tr>
+                        <td>{{ patient.name }}</td>
+                        <td>{{ patient.age }}</td>
+                        <td>{{ patient.gender }}</td>
+                        <td>{{ patient.address }}</td>
+                        <td>{{ patient.contact_number }}</td>
+                        <td>{{ patient.doctor.name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
