@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voice Parameter Analysis Form</title>
+    <title>Hospital Home</title>
     <style>
         :root {
             --color-bg: #0a0f1c;
@@ -21,7 +21,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         body {
@@ -54,6 +54,23 @@
         .subtitle {
             color: var(--color-text-secondary);
             font-size: 1.1rem;
+        }
+
+        .link-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .link-container a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .link-container a:hover {
+            color: var(--color-secondary);
         }
 
         .form-container {
@@ -221,11 +238,13 @@
 </head>
 <body>
     <div class="container">
-        <header class="header">
-            <h1 class="title">Voice Parameter Analysis Form</h1>
-            <p class="subtitle">Enter acoustic parameters for voice analysis</p>
-        </header>
-
+        <div class="header">
+            <h1 class="title">Hospital Home</h1>
+            <p class="subtitle">Welcome to the hospital dashboard</p>
+        </div>
+        <div class="link-container">
+            <a href="{% url 'patients_list' %}">View Patients List</a>
+        </div>
         <form id="parameterForm" class="form-container">
             <!-- Fundamental Frequency Parameters -->
             <div class="parameter-group">
@@ -449,7 +468,7 @@
             const submitButton = document.getElementById('submitButton');
             const inputs = form.querySelectorAll('input');
             const formResult = document.getElementById('formResult');
-
+    
             const validateInput = (input) => {
                 const value = parseFloat(input.value);
                 const min = parseFloat(input.min);
@@ -466,7 +485,7 @@
                     return true;
                 }
             };
-
+    
             const checkFormValidity = () => {
                 let isValid = true;
                 inputs.forEach(input => {
@@ -483,7 +502,7 @@
                 
                 return isValid;
             };
-
+    
             inputs.forEach(input => {
                 ['input', 'blur'].forEach(eventType => {
                     input.addEventListener(eventType, () => {
@@ -492,10 +511,10 @@
                     });
                 });
             });
-
+    
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-
+    
                 try {
                     const formData = new FormData(form);
                     const data = [
@@ -522,7 +541,7 @@
                         parseFloat(formData.get('D2') || 0),          // D2
                         parseFloat(formData.get('PPE') || 0)          // PPE
                     ];
-
+    
                     // Send the data to the backend
                     const response = await fetch('http://127.0.0.1:8000/process-parameters/', {
                         method: 'POST',
@@ -531,12 +550,17 @@
                         },
                         body: JSON.stringify({ features: data }),
                     });
-
+    
                     const result = await response.json();
-
+    
                     if (result.status === "success") {
-                        formResult.innerHTML = `Prediction Probability: ${result.prediction}`;
-                        formResult.className = 'form-result success';
+                        // Store the prediction in sessionStorage
+                        sessionStorage.setItem('predictionResult', JSON.stringify({
+                            prediction: result.prediction
+                        }));
+    
+                        // Redirect to results.html
+                        window.location.href = 'results.html';
                     } else {
                         throw new Error(result.message);
                     }
@@ -546,9 +570,7 @@
                     console.error('Submission error:', error);
                 }
             });
-
-
-
+    
             // Initial form validation
             checkFormValidity();
         });

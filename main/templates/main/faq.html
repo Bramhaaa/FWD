@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parkinson's Prediction System</title>
+    <title>FAQ</title>
     <style>
         :root {
             --color-bg: #0a0f1c;
@@ -116,13 +116,13 @@
 
         .main-content {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-columns: 1fr;
             gap: 4rem;
             align-items: center;
             padding: 2rem 0;
         }
 
-        .hero-section {
+        .faq-section {
             padding-right: 2rem;
         }
 
@@ -150,78 +150,21 @@
             font-weight: 500;
         }
 
-        .login-options {
-            display: grid;
-            gap: 1.5rem;
-            width: 100%;
-            max-width: 400px;
+        .faq-item {
+            margin-bottom: 2rem;
         }
 
-        .login-btn {
-            width: 100%;
-            padding: 1.25rem;
-            border: none;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .login-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .login-btn:hover::before {
-            opacity: 0.1;
-        }
-
-        .btn-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 1rem;
-        }
-
-        .btn-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 8px;
-            background: var(--gradient-primary);
-        }
-
-        .btn-text {
-            color: var(--color-text);
+        .faq-question {
+            font-size: 1.25rem;
             font-weight: 600;
-            font-size: 1.125rem;
-            letter-spacing: 0.01em;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
         }
 
-        .login-btn.hospital .btn-icon {
-            background: var(--gradient-primary);
-        }
-
-        .login-btn.patient .btn-icon {
-            background: var(--gradient-accent);
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .login-btn:active {
-            transform: translateY(0);
+        .faq-answer {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
         }
 
         @media (max-width: 1024px) {
@@ -230,19 +173,13 @@
                 gap: 3rem;
             }
 
-            .hero-section {
+            .faq-section {
                 padding-right: 0;
                 text-align: center;
             }
 
             .title {
                 font-size: 3rem;
-            }
-
-            .login-section {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
             }
         }
 
@@ -262,18 +199,6 @@
             .nav {
                 gap: 1rem;
             }
-
-            .login-options {
-                gap: 1rem;
-            }
-
-            .login-btn {
-                padding: 1rem;
-            }
-
-            .btn-text {
-                font-size: 1rem;
-            }
         }
     </style>
 </head>
@@ -287,37 +212,42 @@
     <div class="layout">
         <header class="header">
             <nav class="nav">
-                <a href="{% url 'aboutus' %}" class="nav-link">About Us</a>
-                <a href="{%url 'faq'%}" class="nav-link">FAQs</a>
-            </nav>  
+                <a href="{% url 'landing' %}" class="nav-link">Home</a>
+            </nav>
         </header>
 
         <main class="main-content">
-            <div class="hero-section">
-                <h1 class="title">Parkinson's Prediction System</h1>
-                <p class="subtitle">Welcome to the future of early detection</p>
-            </div>
-
-            <div class="login-section">
-                <h2 class="section-title">Select your role to continue</h2>
-                <div class="login-options">
-                    <a href="{% url 'hospital_login' %}">
-                        <button class="login-btn hospital">
-                            <div class="btn-content">
-                                <span class="btn-icon hospital-icon"></span>
-                                <span class="btn-text">Hospital Login</span>
-                            </div>
-                        </button>
-                    </a>
-                    <a href="{% url 'patient_login' %}">
-                        <button class="login-btn patient">
-                            <div class="btn-content">
-                                <span class="btn-icon patient-icon"></span>
-                                <span class="btn-text">Patient Login</span>
-                            </div>
-                        </button>
-                    </a>
+            <div class="faq-section">
+                <h1 class="title">Frequently Asked Questions</h1>
+                <div class="faq-item">
+                    <h2 class="faq-question">1. What is Parkinson's disease?</h2>
+                    <p class="faq-answer">Parkinson’s disease is a neurodegenerative disorder that affects movement. It occurs when nerve cells in the brain that produce dopamine, a chemical that helps control muscle movement, begin to break down. This results in symptoms such as tremors, stiffness, slowness of movement, and balance problems.<p>
                 </div>
+                <div class="faq-item">
+                    <h2 class="faq-question">2. What causes Parkinson’s disease?</h2>
+                    <p class="faq-answer">The exact cause of Parkinson’s disease is unknown, but it is believed to result from a combination of genetic and environmental factors. A decrease in dopamine-producing neurons in the brain is the hallmark of the disease.</p>
+                </div>
+                <div class="faq-item">
+                    <h2 class="faq-question">3. Is Parkinson's disease hereditary?</h2>
+                    <p class="faq-answer">While the majority of cases are not directly inherited, there are some genetic factors that may increase the risk. A small percentage of people with Parkinson’s disease have a family history of the condition.</p>
+                </div>
+                <div class="faq-item">
+                    <h2 class="faq-question">4. How is Parkinson’s disease diagnosed?</h2>
+                    <p class="faq-answer">Diagnosis is based on medical history, a physical examination, and neurological tests. There is no specific test for Parkinson’s, but doctors often use brain imaging and blood tests to rule out other conditions.</p>
+                </div>
+                <div class="faq-item">
+                    <h2 class="faq-question">5. How can I help a loved one with Parkinson’s disease?</h2>
+                    <p class="faq-answer">Supporting a loved one with Parkinson’s disease involves patience, understanding, and helping them manage daily activities. Encourage exercise, a healthy diet, and adherence to medications. It is also important to provide emotional support and explore community resources for both the patient and caregivers.</p>
+                </div>
+                <div class="faq-item">
+                    <h2 class="faq-question">6. How does Parkinson’s disease progress?</h2>
+                    <p class="faq-answer">Parkinson's disease is progressive, meaning that symptoms typically worsen over time. However, the rate of progression varies between individuals. Some may experience slow progression, while others may see more rapid deterioration.</p>
+                </div>
+                <div class="faq-item">
+                    <h2 class="faq-question">7. Is there any ongoing research for Parkinson’s disease?</h2>
+                    <p class="faq-answer">Yes, there is ongoing research aimed at finding better treatments and a potential cure for Parkinson’s disease. Research is focused on understanding the causes of the disease, improving medications, and exploring new therapies like gene therapy, stem cells, and neuroprotective treatments.</p>
+                </div>
+                <!-- Add more FAQ items as needed -->
             </div>
         </main>
     </div>

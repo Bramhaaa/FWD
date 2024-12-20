@@ -97,6 +97,23 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        .link-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .link-container a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .link-container a:hover {
+            color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -120,6 +137,9 @@
                     </div>
                     <button type="submit">Submit</button>
                 </form>
+                <div class="link-container">
+                    <a href="{% url 'doctors_list' %}">View Doctors List</a>
+                </div>
             </div>
         </div>
     </div>

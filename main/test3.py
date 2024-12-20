@@ -4,8 +4,8 @@ import os
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL_PATH = os.path.join(BASE_DIR, '/Users/bramhabajannavar/Desktop/Parkinsons/Parkinsons/main/models/parkinsons_model.pkl')
-SCALER_PATH = os.path.join(BASE_DIR, '/Users/bramhabajannavar/Desktop/Parkinsons/Parkinsons/main/models/scaler.pkl')
+MODEL_PATH = os.path.join(BASE_DIR, "C:\\fwd\Parkinsons_predictor\main\models\parkinsons_model.pkl")
+SCALER_PATH = os.path.join(BASE_DIR, "C:\\fwd\Parkinsons_predictor\main\models\scaler.pkl")
 
 
 with open(MODEL_PATH, 'rb') as model_file:

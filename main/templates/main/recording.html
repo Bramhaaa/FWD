@@ -249,7 +249,22 @@
             opacity: 0.9;
             transform: translateY(-1px);
         }
+        .nav {
+            padding: 1rem;
+            display: flex;
+            justify-content: flex-end;
+        }
 
+        .nav-link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-text);
+        }
         @media (max-width: 1024px) {
             .grid {
                 grid-template-columns: 1fr;
@@ -268,6 +283,12 @@
     </style>
 </head>
 <body>
+    <header class="header">
+        <nav class="nav">
+            <a href="{% url 'gethelp' %}" class="nav-link">Get Help</a>
+            <a href="{% url 'doctors_list' %}" class="nav-link">Doctors List</a>
+        </nav>
+    </header>
     <div class="background-shapes">
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
@@ -276,7 +297,7 @@
 
     <div class="container">
         <div class="grid">
-            <!-- Recording Section -->
+                        <!-- Recording Section -->
             <div class="card">
                 <div class="card-header">
                     <h2 class="title">Voice Recording</h2>

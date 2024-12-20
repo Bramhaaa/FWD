@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .forms import ParameterForm, HospitalParameterForm
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Profile
+from .models import Profile, Doctor, Patient
 from django.db import IntegrityError
 from .test3 import predict  # Import the predict function from the Python script
 from django.views.decorators.csrf import csrf_exempt, csrf_protect  # Add this import
@@ -97,6 +97,12 @@ def chatbot_api(request):
 def landing(request):
     return render(request, 'main/landing.html')
 
+
+def results(request):
+    return render(request, 'main/results.html')
+
+def hospital_home_static(request):
+    return render(request, 'hospital_home.html')
 @csrf_exempt
 def process_parameters(request):
     if request.method == 'POST':
@@ -135,3 +141,17 @@ def record_voice(request):
 @login_required
 def recording_view(request):
     return render(request, 'main/recording.html')
+def about_view(request):
+    return render(request, 'main/aboutus.html')
+def get_help(request):
+    return render(request, 'main/gethelp.html')
+def faq_view(request):
+    return render(request, 'main/faq.html')
+
+def doctors_list_view(request):
+    doctors = Doctor.objects.all()
+    return render(request, 'main/doctors_list.html', {'doctors': doctors})
+
+def patients_list_view(request):
+    patients = Patient.objects.all()
+    return render(request, 'main/patients_list.html', {'patients': patients})
