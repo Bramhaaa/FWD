@@ -46,6 +46,15 @@
         .login-container button:hover {
             background: #0056b3;
         }
+        .error-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(255, 0, 0, 0.1); /* Brighter red background */
+            border: 1px solid #ff0000;
+            border-radius: 8px;
+            color: #ff0000;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -57,6 +66,21 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+        {% if error %}
+            <div class="error-message">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+        {% if form.errors %}
+            <div class="error-message">
+                <p>Please enter a correct username and password. Note that both fields may be case-sensitive.</p>
+            </div>
+        {% endif %}
+        {% if form.non_field_errors %}
+            <div class="error-message">
+                <p>{{ form.non_field_errors }}</p>
+            </div>
+        {% endif %}
     </div>
 </body>
 </html>
