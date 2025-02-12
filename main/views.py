@@ -155,3 +155,8 @@ def doctors_list_view(request):
 def patients_list_view(request):
     patients = Patient.objects.all()
     return render(request, 'main/patients_list.html', {'patients': patients})
+
+def hospital_lists_view(request):
+    doctors = Doctor.objects.all()
+    patients = Patient.objects.all()
+    return render(request, 'main/hospital_lists.html', {'doctors': doctors, 'patients': patients})
