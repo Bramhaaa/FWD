@@ -299,7 +299,6 @@
 <body>
     <header class="header">
         <nav class="nav">
-
             <a href="{% url 'doctors_list' %}" class="nav-link">Doctors List</a>
         </nav>
     </header>
@@ -311,7 +310,7 @@
 
     <div class="container">
         <div class="grid">
-                        <!-- Recording Section -->
+            <!-- Recording Section -->
             <div class="card">
                 <div class="card-header">
                     <h2 class="title">Voice Recording</h2>
@@ -357,6 +356,9 @@
     </div>
 
     <script>
+        let timerInterval;
+        let isRecording = false;
+
         document.getElementById('recordButton').addEventListener('click', async () => {
             const button = document.getElementById('recordButton');
             const timerElement = document.getElementById('timer');
@@ -364,15 +366,16 @@
             const resultElement = document.getElementById('result');
             const recordingIndicator = document.querySelector('.recording-indicator');
             let timeLeft = 25;
-            let isRecording = button.querySelector('span:last-child').textContent === 'Stop Recording';
 
             if (!isRecording) {
                 isRecording = true;
                 button.querySelector('span:last-child').textContent = 'Stop Recording';
                 recordingIndicator.classList.remove('hidden');
                 statusElement.textContent = 'Recording in progress...';
-                
-                const timerInterval = setInterval(() => {
+                resultElement.classList.add('hidden');
+                resultElement.textContent = '';
+
+                timerInterval = setInterval(() => {
                     if (timeLeft > 0) {
                         timeLeft--;
                         timerElement.textContent = timeLeft;
@@ -407,6 +410,8 @@
                 recordingIndicator.classList.add('hidden');
                 statusElement.textContent = 'Recording completed';
                 statusElement.style.color = '';
+                clearInterval(timerInterval);
+                timerElement.textContent = '25';
             }
         });
 
